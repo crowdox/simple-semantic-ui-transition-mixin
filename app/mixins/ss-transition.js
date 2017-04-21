@@ -43,6 +43,9 @@ export default Ember.Mixin.create({
 
   isAnimatingIn() {
     let scope = this._scope();
+    if (scope.length === 0) {
+      return false;
+    }
     return scope.hasClass('visible') &&
            scope.hasClass('animating') &&
            scope.hasClass('in');
@@ -50,6 +53,9 @@ export default Ember.Mixin.create({
 
   isAnimatingOut() {
     let scope = this._scope();
+    if (scope.length === 0) {
+      return false;
+    }
     return scope.hasClass('visible') &&
            scope.hasClass('animating') &&
            scope.hasClass('out');
@@ -57,12 +63,18 @@ export default Ember.Mixin.create({
 
   isVisible() {
     let scope = this._scope();
+    if (scope.length === 0) {
+      return false;
+    }
     return scope.hasClass('visible') &&
            scope.hasClass('active');
   },
 
   isHidden() {
     let scope = this._scope();
+    if (scope.length === 0) {
+      return false;
+    }
     return scope.hasClass('hidden');
   },
 
@@ -70,7 +82,6 @@ export default Ember.Mixin.create({
   _scope() {
     let scope = this.get('transitionScope');
     if (Ember.isPresent(scope)) {
-      let query = this.$ || window.$;
       if (typeof this.$ === 'function') {
         return this.$(scope);
       }
@@ -82,6 +93,9 @@ export default Ember.Mixin.create({
   _animateIn() {
     this._addBaseProperties();
     let scope = this._scope();
+    if (scope.length === 0) {
+      return;
+    }
     scope.removeClass('hidden out');
     let animationMode = this._animationMode();
     scope.addClass(`visible animating ${animationMode} in`);
@@ -109,6 +123,9 @@ export default Ember.Mixin.create({
 
   _show() {
     let scope = this._scope();
+    if (scope.length === 0) {
+      return;
+    }
     let animationMode = this._animationMode();
     scope.addClass('visible active');
     scope.removeClass(`animating ${animationMode} in`);
@@ -117,6 +134,9 @@ export default Ember.Mixin.create({
   _animateOut() {
     this._addBaseProperties();
     let scope = this._scope();
+    if (scope.length === 0) {
+      return;
+    }
     scope.removeClass('in');
     let animationMode = this._animationMode();
     scope.addClass(`visible animating ${animationMode} out`);
@@ -145,6 +165,9 @@ export default Ember.Mixin.create({
 
   _hide() {
     let scope = this._scope();
+    if (scope.length === 0) {
+      return;
+    }
     let animationMode = this._animationMode();
     scope.addClass('hidden');
     scope.removeClass(`visible active animating ${animationMode} out`);
