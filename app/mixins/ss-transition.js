@@ -70,7 +70,11 @@ export default Ember.Mixin.create({
   _scope() {
     let scope = this.get('transitionScope');
     if (Ember.isPresent(scope)) {
-      return this.$(scope);
+      let query = this.$ || window.$;
+      if (typeof this.$ === 'function') {
+        return this.$(scope);
+      }
+      return window.$(scope);
     }
     return this.$();
   },
@@ -148,6 +152,9 @@ export default Ember.Mixin.create({
 
   _addBaseProperties() {
     let scope = this._scope();
+    if (scope.length === 0) {
+      return;
+    }
     let animationDuration = this._animationDuration();
     let style = scope.prop('style');
     let formatted = `${animationDuration}ms`;

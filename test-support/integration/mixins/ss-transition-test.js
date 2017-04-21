@@ -14,6 +14,11 @@ moduleForComponent('ss-test', 'Integration | Mixin | ss transition', {
 });
 
 let buildCSS = function(style) {
+  if (style.length === 0) {
+    // PhantomJs fix
+    return "";
+  }
+
   let keys = Object.keys(style);
   let styles = [];
   for (let key of keys) {
@@ -112,7 +117,8 @@ test('check properties', function(assert) {
   assert.equal(ssTestElement.hasClass('transition'), false);
 
   ssTest._addBaseProperties();
-  assert.equal(buildCSS(ssTestElement.get(0).style), "animationDuration: 500ms");
+  // Hack to support both chrome and phantom
+  assert.ok(buildCSS(ssTestElement.get(0).style).toLowerCase().includes("animationduration: 500ms"));
   assert.equal(ssTestElement.hasClass('transition'), true);
 });
 
