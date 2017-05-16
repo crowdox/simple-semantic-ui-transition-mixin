@@ -129,7 +129,11 @@ export default Ember.Mixin.create({
     let animationMode = this._animationMode();
     scope.addClass('visible active');
     scope.removeClass(`animating ${animationMode} in`);
+    this.shown();
   },
+
+  // Shown event
+  shown() { },
 
   _animateOut() {
     this._addBaseProperties();
@@ -171,7 +175,11 @@ export default Ember.Mixin.create({
     let animationMode = this._animationMode();
     scope.addClass('hidden');
     scope.removeClass(`visible active animating ${animationMode} out`);
+    this.hidden();
   },
+
+  // Hidden event
+  hidden() { },
 
   _addBaseProperties() {
     let scope = this._scope();
