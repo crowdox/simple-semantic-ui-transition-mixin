@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import SSTransition from 'manage/mixins/ss-transition';
+// Relative path works since both survey and manage are in lib/...
+import SSTransition from '../../../mixins/ss-transition';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
