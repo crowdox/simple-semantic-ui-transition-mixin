@@ -43,7 +43,7 @@ export default Ember.Mixin.create({
 
   isAnimatingIn() {
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return false;
     }
     return scope.hasClass('visible') &&
@@ -53,7 +53,7 @@ export default Ember.Mixin.create({
 
   isAnimatingOut() {
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return false;
     }
     return scope.hasClass('visible') &&
@@ -63,7 +63,7 @@ export default Ember.Mixin.create({
 
   isVisible() {
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return false;
     }
     return scope.hasClass('visible') &&
@@ -72,7 +72,7 @@ export default Ember.Mixin.create({
 
   isHidden() {
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return false;
     }
     return scope.hasClass('hidden');
@@ -93,7 +93,7 @@ export default Ember.Mixin.create({
   _animateIn() {
     this._addBaseProperties();
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return;
     }
     scope.removeClass('hidden out');
@@ -123,7 +123,7 @@ export default Ember.Mixin.create({
 
   _show() {
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return;
     }
     let animationMode = this._animationMode();
@@ -138,7 +138,7 @@ export default Ember.Mixin.create({
   _animateOut() {
     this._addBaseProperties();
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return;
     }
     scope.removeClass('in');
@@ -169,7 +169,7 @@ export default Ember.Mixin.create({
 
   _hide() {
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return;
     }
     let animationMode = this._animationMode();
@@ -183,7 +183,7 @@ export default Ember.Mixin.create({
 
   _addBaseProperties() {
     let scope = this._scope();
-    if (scope.length === 0) {
+    if (scope == null || scope.length === 0) {
       return;
     }
     let animationDuration = this._animationDuration();
