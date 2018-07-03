@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Component from '@ember/component';
 // Relative path works since both survey and manage are in lib/...
 import SSTransition from '../../../mixins/ss-transition';
 import { moduleForComponent, test } from 'ember-qunit';
@@ -7,7 +8,7 @@ import hbs from 'htmlbars-inline-precompile';
 moduleForComponent('ss-test', 'Integration | Mixin | ss transition', {
   integration: true,
   setup() {
-    this.register('component:ss-test', Ember.Component.extend(SSTransition, {
+    this.register('component:ss-test', Component.extend(SSTransition, {
       classNames: ['ss', 'test']
     }));
     this.register('template:components/ss-test', hbs`{{yield}}`);
@@ -23,7 +24,7 @@ let buildCSS = function(style) {
   let keys = Object.keys(style);
   let styles = [];
   for (let key of keys) {
-    if (isNaN(key) && Ember.isPresent(style[key])) {
+    if (isNaN(key) && isPresent(style[key])) {
       styles.push(`${key}: ${style[key]}`);
     }
   }

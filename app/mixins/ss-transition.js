@@ -1,6 +1,9 @@
+import { later } from '@ember/runloop';
+import { isBlank, isPresent } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   transitionMode: null,
   transitionDuration: null,
   transitionScope: null,
@@ -8,11 +11,11 @@ export default Ember.Mixin.create({
   init() {
     this._super(...arguments);
     let transitionMode = this.get('transitionMode');
-    if (Ember.isBlank(transitionMode)) {
+    if (isBlank(transitionMode)) {
       Ember.Logger.warn("transitionMode isn't specificed. It should be a string (i.e. fade). Using default");
     }
     let transitionDuration = this.get('transitionDuration');
-    if (Ember.isBlank(transitionDuration)) {
+    if (isBlank(transitionDuration)) {
       Ember.Logger.warn("transitionDuration isn't specificed. It should be an integer for milliseconds (i.e. 500).Using default");
     }
   },
@@ -81,7 +84,7 @@ export default Ember.Mixin.create({
   // private methods
   _scope() {
     let scope = this.get('transitionScope');
-    if (Ember.isPresent(scope)) {
+    if (isPresent(scope)) {
       if (typeof this.$ === 'function') {
         return this.$(scope);
       }
@@ -99,7 +102,7 @@ export default Ember.Mixin.create({
     scope.removeClass('hidden out');
     let animationMode = this._animationMode();
     scope.addClass(`visible animating ${animationMode} in`);
-    Ember.run.later(this, this._animatedIn, this._animationDuration());
+    later(this, this._animatedIn, this._animationDuration());
   },
 
   _animatedIn() {
@@ -144,7 +147,7 @@ export default Ember.Mixin.create({
     scope.removeClass('in');
     let animationMode = this._animationMode();
     scope.addClass(`visible animating ${animationMode} out`);
-    Ember.run.later(this, this._animatedOut, this._animationDuration());
+    later(this, this._animatedOut, this._animationDuration());
   },
 
   _animatedOut() {
@@ -189,7 +192,7 @@ export default Ember.Mixin.create({
     let animationDuration = this._animationDuration();
     let style = scope.prop('style');
     let formatted = `${animationDuration}ms`;
-    if (Ember.isBlank(style.animationDuration) || style.animationDuration !== formatted) {
+    if (isBlank(style.animationDuration) || style.animationDuration !== formatted) {
       scope.css('animation-duration', formatted);
     }
 
@@ -198,7 +201,7 @@ export default Ember.Mixin.create({
 
   _animationDuration() {
     let animationDuration = this.get('transitionDuration');
-    if (Ember.isBlank(animationDuration)) {
+    if (isBlank(animationDuration)) {
       return 500;
     }
     animationDuration = parseInt(animationDuration, 10);
@@ -210,7 +213,7 @@ export default Ember.Mixin.create({
 
   _animationMode() {
     let animationMode = this.get('transitionMode');
-    if (Ember.isBlank(animationMode)) {
+    if (isBlank(animationMode)) {
       return 'fade';
     }
     return animationMode;
