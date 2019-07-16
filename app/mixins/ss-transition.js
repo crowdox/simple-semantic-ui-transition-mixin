@@ -1,7 +1,6 @@
 import { later } from '@ember/runloop';
 import { isBlank, isPresent } from '@ember/utils';
 import Mixin from '@ember/object/mixin';
-import { logger_warn } from 'shared/utils/logger';
 
 export default Mixin.create({
   transitionMode: null,
