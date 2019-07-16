@@ -1,7 +1,7 @@
 import { later } from '@ember/runloop';
 import { isBlank, isPresent } from '@ember/utils';
 import Mixin from '@ember/object/mixin';
-import Ember from 'ember';
+import { logger_warn } from 'shared/utils/logger';
 
 export default Mixin.create({
   transitionMode: null,
@@ -12,11 +12,15 @@ export default Mixin.create({
     this._super(...arguments);
     let transitionMode = this.get('transitionMode');
     if (isBlank(transitionMode)) {
-      Ember.Logger.warn("transitionMode isn't specificed. It should be a string (i.e. fade). Using default");
+      if (window.console != null && window.console.warn != null) {
+        window.console.warn("transitionMode isn't specificed. It should be a string (i.e. fade). Using default");
+      }
     }
     let transitionDuration = this.get('transitionDuration');
     if (isBlank(transitionDuration)) {
-      Ember.Logger.warn("transitionDuration isn't specificed. It should be an integer for milliseconds (i.e. 500).Using default");
+      if (window.console != null && window.console.warn != null) {
+        window.console.warn("transitionDuration isn't specificed. It should be an integer for milliseconds (i.e. 500).Using default");
+      }
     }
   },
 
