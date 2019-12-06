@@ -33,13 +33,13 @@ let buildCSS = function(style) {
 
 test('can render with mixin', function(assert) {
   assert.expect(1);
-  this.render(hbs`{{ss-test}}`);
+  this.render(hbs`{{ss-test transitionMode="fade" transitionDuration=500}}`);
   assert.ok(this.$('.ss.test').length, 1);
 });
 
 test('detects active', function(assert) {
   assert.expect(4);
-  this.render(hbs`{{ss-test class="visible active"}}`);
+  this.render(hbs`{{ss-test class="visible active" transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
   // Everything should start false
@@ -51,7 +51,7 @@ test('detects active', function(assert) {
 
 test('detects hidden', function(assert) {
   assert.expect(4);
-  this.render(hbs`{{ss-test class="hidden"}}`);
+  this.render(hbs`{{ss-test class="hidden" transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
   // Everything should start false
@@ -63,7 +63,7 @@ test('detects hidden', function(assert) {
 
 test('detects animating in', function(assert) {
   assert.expect(4);
-  this.render(hbs`{{ss-test class="visible animating in"}}`);
+  this.render(hbs`{{ss-test class="visible animating in" transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
   // Everything should start false
@@ -75,7 +75,7 @@ test('detects animating in', function(assert) {
 
 test('detects animating out', function(assert) {
   assert.expect(4);
-  this.render(hbs`{{ss-test class="visible animating out"}}`);
+  this.render(hbs`{{ss-test class="visible animating out" transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
   // Everything should start false
@@ -87,7 +87,7 @@ test('detects animating out', function(assert) {
 
 test('check properties', function(assert) {
   assert.expect(18);
-  this.render(hbs`{{ss-test}}`);
+  this.render(hbs`{{ss-test transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
   // Everything should start false
@@ -126,7 +126,7 @@ test('check properties', function(assert) {
 
 test('transitions in', function(assert) {
   assert.expect(12);
-  this.render(hbs`{{ss-test}}`);
+  this.render(hbs`{{ss-test transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
 
@@ -153,7 +153,7 @@ test('transitions in', function(assert) {
 
 test('transitions out', function(assert) {
   assert.expect(16);
-  this.render(hbs`{{ss-test}}`);
+  this.render(hbs`{{ss-test transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
 
@@ -186,7 +186,7 @@ test('transitions out', function(assert) {
 
 test('transitions in then out cancels in', function(assert) {
   assert.expect(16);
-  this.render(hbs`{{ss-test}}`);
+  this.render(hbs`{{ss-test transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
 
@@ -223,7 +223,7 @@ test('transitions in then out cancels in', function(assert) {
 
 test('transitions out then in cancels out', function(assert) {
   assert.expect(20);
-  this.render(hbs`{{ss-test}}`);
+  this.render(hbs`{{ss-test transitionMode="fade" transitionDuration=500}}`);
   let ssTestElement = this.$('.ss.test');
   let ssTest = this.container.cache['-view-registry:main'][ssTestElement.attr('id')];
 
