@@ -12,13 +12,13 @@ export default Mixin.create({
     let transitionMode = this.get('transitionMode');
     if (isBlank(transitionMode)) {
       if (window.console != null && window.console.warn != null) {
-        window.console.warn("transitionMode isn't specificed. It should be a string (i.e. fade). Using default");
+        window.console.warn("transitionMode isn't specified. It should be a string (i.e. fade). Using default");
       }
     }
     let transitionDuration = this.get('transitionDuration');
     if (isBlank(transitionDuration)) {
       if (window.console != null && window.console.warn != null) {
-        window.console.warn("transitionDuration isn't specificed. It should be an integer for milliseconds (i.e. 500).Using default");
+        window.console.warn("transitionDuration isn't specified. It should be an integer for milliseconds (i.e. 500).Using default");
       }
     }
   },
