@@ -1,6 +1,7 @@
 import { later } from '@ember/runloop';
 import { isBlank, isPresent } from '@ember/utils';
 import Mixin from '@ember/object/mixin';
+import jQuery from 'jquery';
 
 export default Mixin.create({
   transitionMode: null,
@@ -88,12 +89,12 @@ export default Mixin.create({
   _scope() {
     let scope = this.get('transitionScope');
     if (isPresent(scope)) {
-      if (typeof this.$ === 'function') {
-        return this.$(scope);
+      if (this.element != null) {
+        return jQuery(scope, this.element);
       }
-      return window.$(scope);
+      return jQuery(scope);
     }
-    return this.$();
+    return jQuery(this.element);
   },
 
   _animateIn() {
