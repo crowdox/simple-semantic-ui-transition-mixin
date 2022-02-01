@@ -25,7 +25,7 @@ export default Mixin.create({
   },
 
   transitionIn() {
-    if (this.isVisible() && !this.isAnimatingOut()) {
+    if (this.isElementVisible() && !this.isAnimatingOut()) {
       return;
     }
 
@@ -37,7 +37,7 @@ export default Mixin.create({
   },
 
   transitionOut() {
-    if (this.isHidden()) {
+    if (this.isElementHidden()) {
       return;
     }
 
@@ -68,7 +68,7 @@ export default Mixin.create({
            scope.hasClass('out');
   },
 
-  isVisible() {
+  isElementVisible() {
     let scope = this._scope();
     if (scope == null || scope.length === 0) {
       return false;
@@ -77,7 +77,7 @@ export default Mixin.create({
            scope.hasClass('active');
   },
 
-  isHidden() {
+  isElementHidden() {
     let scope = this._scope();
     if (scope == null || scope.length === 0) {
       return false;
@@ -114,7 +114,7 @@ export default Mixin.create({
       return;
     }
     // Check we are still animating in
-    if (this.isHidden()) {
+    if (this.isElementHidden()) {
       return;
     }
     if (this.isAnimatingOut()) {
@@ -167,7 +167,7 @@ export default Mixin.create({
       return;
     }
 
-    if (this.isHidden()) {
+    if (this.isElementHidden()) {
       return;
     }
     // We are still animating, switch to visible

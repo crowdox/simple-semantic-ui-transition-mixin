@@ -31,8 +31,8 @@ module('Integration | Mixin | ss transition', function(hooks) {
     // Everything should start false
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), true);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), true);
+    assert.equal(ssTest.isElementHidden(), false);
   });
 
   test('detects hidden', async function(assert) {
@@ -43,8 +43,8 @@ module('Integration | Mixin | ss transition', function(hooks) {
     // Everything should start false
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), true);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), true);
   });
 
   test('detects animating in', async function(assert) {
@@ -55,8 +55,8 @@ module('Integration | Mixin | ss transition', function(hooks) {
     // Everything should start false
     assert.equal(ssTest.isAnimatingIn(), true);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
   });
 
   test('detects animating out', async function(assert) {
@@ -67,8 +67,8 @@ module('Integration | Mixin | ss transition', function(hooks) {
     // Everything should start false
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), true);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
   });
 
   test('check properties', async function(assert) {
@@ -79,22 +79,22 @@ module('Integration | Mixin | ss transition', function(hooks) {
     // Everything should start false
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
 
     // Now force show
     ssTest._show();
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), true);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), true);
+    assert.equal(ssTest.isElementHidden(), false);
 
     // Now force hide
     ssTest._hide();
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), true);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), true);
 
     // Test default properties
     assert.equal(ssTest._animationDuration(), 500);
@@ -117,21 +117,21 @@ module('Integration | Mixin | ss transition', function(hooks) {
 
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
 
     ssTest.transitionIn();
     assert.equal(ssTest.isAnimatingIn(), true);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
 
     let done = assert.async();
     setTimeout(() => {
       assert.equal(ssTest.isAnimatingIn(), false);
       assert.equal(ssTest.isAnimatingOut(), false);
-      assert.equal(ssTest.isVisible(), true);
-      assert.equal(ssTest.isHidden(), false);
+      assert.equal(ssTest.isElementVisible(), true);
+      assert.equal(ssTest.isElementHidden(), false);
       done();
     }, 600);
   });
@@ -144,27 +144,27 @@ module('Integration | Mixin | ss transition', function(hooks) {
 
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
 
     ssTest._show();
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), true);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), true);
+    assert.equal(ssTest.isElementHidden(), false);
 
     ssTest.transitionOut();
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), true);
-    assert.equal(ssTest.isVisible(), true);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), true);
+    assert.equal(ssTest.isElementHidden(), false);
 
     let done = assert.async();
     setTimeout(() => {
       assert.equal(ssTest.isAnimatingIn(), false);
       assert.equal(ssTest.isAnimatingOut(), false);
-      assert.equal(ssTest.isVisible(), false);
-      assert.equal(ssTest.isHidden(), true);
+      assert.equal(ssTest.isElementVisible(), false);
+      assert.equal(ssTest.isElementHidden(), true);
       done();
     }, 600);
   });
@@ -177,14 +177,14 @@ module('Integration | Mixin | ss transition', function(hooks) {
 
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
 
     ssTest.transitionIn();
     assert.equal(ssTest.isAnimatingIn(), true);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
 
     let done = assert.async();
     // Wait half the transition time in
@@ -192,15 +192,15 @@ module('Integration | Mixin | ss transition', function(hooks) {
       ssTest.transitionOut();
       assert.equal(ssTest.isAnimatingIn(), false);
       assert.equal(ssTest.isAnimatingOut(), true);
-      assert.equal(ssTest.isVisible(), false);
-      assert.equal(ssTest.isHidden(), false);
+      assert.equal(ssTest.isElementVisible(), false);
+      assert.equal(ssTest.isElementHidden(), false);
 
       // Wait the full time now
       setTimeout(() => {
         assert.equal(ssTest.isAnimatingIn(), false);
         assert.equal(ssTest.isAnimatingOut(), false);
-        assert.equal(ssTest.isVisible(), false);
-        assert.equal(ssTest.isHidden(), true);
+        assert.equal(ssTest.isElementVisible(), false);
+        assert.equal(ssTest.isElementHidden(), true);
         done();
       }, 600);
     }, 250);
@@ -214,20 +214,20 @@ module('Integration | Mixin | ss transition', function(hooks) {
 
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), false);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), false);
+    assert.equal(ssTest.isElementHidden(), false);
 
     ssTest._show();
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), false);
-    assert.equal(ssTest.isVisible(), true);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), true);
+    assert.equal(ssTest.isElementHidden(), false);
 
     ssTest.transitionOut();
     assert.equal(ssTest.isAnimatingIn(), false);
     assert.equal(ssTest.isAnimatingOut(), true);
-    assert.equal(ssTest.isVisible(), true);
-    assert.equal(ssTest.isHidden(), false);
+    assert.equal(ssTest.isElementVisible(), true);
+    assert.equal(ssTest.isElementHidden(), false);
 
     let done = assert.async();
     // Wait half the transition time in
@@ -235,15 +235,15 @@ module('Integration | Mixin | ss transition', function(hooks) {
       ssTest.transitionIn();
       assert.equal(ssTest.isAnimatingIn(), true);
       assert.equal(ssTest.isAnimatingOut(), false);
-      assert.equal(ssTest.isVisible(), true);
-      assert.equal(ssTest.isHidden(), false);
+      assert.equal(ssTest.isElementVisible(), true);
+      assert.equal(ssTest.isElementHidden(), false);
 
       // Wait the full time now
       setTimeout(() => {
         assert.equal(ssTest.isAnimatingIn(), false);
         assert.equal(ssTest.isAnimatingOut(), false);
-        assert.equal(ssTest.isVisible(), true);
-        assert.equal(ssTest.isHidden(), false);
+        assert.equal(ssTest.isElementVisible(), true);
+        assert.equal(ssTest.isElementHidden(), false);
         done();
       }, 600);
     }, 250);
